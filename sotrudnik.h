@@ -5,8 +5,8 @@ using namespace std;
 class Sotrudnik
 {
 public:
-    vector<int> abilities;
-    Sotrudnik();
+    vector<double> abilities;
+    Sotrudnik(vector<double> abilities, int norm, int busy, bool entry);
     int norm;
     int busy;
     bool entry;
