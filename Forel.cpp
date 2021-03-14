@@ -10,7 +10,7 @@ using namespace std;
 //Euclidean norm
 double norm(vector<double> FirstGuy, vector<double> SecondGuy){
     double sum = 0;
-    for (int i = 0; i < FirstGuy.size(); i++){
+    for (int i = 0; i < static_cast<int>(FirstGuy.size()); i++){
         sum += (FirstGuy[i] - SecondGuy[i])*(FirstGuy[i] - SecondGuy[i]);
     }
     return sqrt(sum);
@@ -20,12 +20,12 @@ double norm(vector<double> FirstGuy, vector<double> SecondGuy){
 vector<vector<double>> Finding_Centr(double R, vector<Sotrudnik> employees, vector<double> centr, vector<double> sum){
     vector<vector<double>> answer;
     vector<double> tmp;
-    for (int i = 1; i < employees.size(); i++){
+    for (int i = 1; i < static_cast<int>(employees.size()); i++){
         //pushing guys in sphere
         if (norm(centr, employees[i].abilities) <= R)
         {
             tmp.push_back(i);
-            for (int j = 0; j < employees[i].abilities.size(); j++)
+            for (int j = 0; j < static_cast<int>(employees[i].abilities.size()); j++)
             {
                 //sum of abilities
                 sum[j] += employees[i].abilities[j]; //сумма по всем координатам для всех сотрудников на расстоянии до R
@@ -33,7 +33,7 @@ vector<vector<double>> Finding_Centr(double R, vector<Sotrudnik> employees, vect
         }
     }
 //finding centr
-    for (int i = 0; i < sum.size(); i++){
+    for (int i = 0; i < static_cast<int>(sum.size()); i++){
         sum[i] /= tmp.size();
         centr[i] = sum[i];
     }
@@ -47,8 +47,8 @@ double find_r(vector<Sotrudnik> employees)
 {
     vector<double> center_postition = employees[0].abilities;
     double max = 0;
-    for (int i = 1; i < employees.size(); i++)
-        for (int j = 0; j < employees[i].abilities.size(); j++)
+    for (int i = 1; i < static_cast<int>(employees.size()); i++)
+        for (int j = 0; j < static_cast<int>(employees[i].abilities.size()); j++)
             if (abs(center_postition[j] - employees[i].abilities[j]) > max)
                 max = abs(center_postition[j] - employees[i].abilities[j]);
     return max;
@@ -56,14 +56,14 @@ double find_r(vector<Sotrudnik> employees)
 
 //normalize dots
 vector<double> normalize(vector<double> abilities, double xMin, double xMax){
-    for (int i = 0; i < abilities.size(); i++)
+    for (int i = 0; i < static_cast<int>(abilities.size()); i++)
         abilities[i] = (abilities[i] - xMin) / (xMax - xMin);
     return abilities;
 }
 
 //Forel
-void forel(vector<Sotrudnik> employees, double xMin, double xMax){
-    for (int i = 0; i < employees.size(); i++)
+vector<vector<Sotrudnik>> forel(vector<Sotrudnik> employees, double xMin, double xMax){
+    for (int i = 0; i < static_cast<int>(employees.size()); i++)
         employees[i].abilities = normalize(employees[i].abilities, xMin, xMax);
     vector<vector<Sotrudnik>> clusters = {};
     vector<double> centr = employees[0].abilities;
@@ -76,7 +76,7 @@ void forel(vector<Sotrudnik> employees, double xMin, double xMax){
     //tmp.push_back(employees[0].abilities);
     sum = employees[0].abilities;
     //sum of abilities of the first guy in space
-    for (int i = 1; i < employees[0].abilities.size(); i++){
+    for (int i = 1; i < static_cast<int>(employees[0].abilities.size()); i++){
         sum.push_back(employees[0].abilities[i]);
     }
     while (employees.size()!=0){
@@ -102,6 +102,7 @@ void forel(vector<Sotrudnik> employees, double xMin, double xMax){
     }
     //centr = sum;
     vector<Sotrudnik> space;
+    return clusters;
 }
 
 
