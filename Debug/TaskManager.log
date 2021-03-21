@@ -1,0 +1,15 @@
+﻿  Sotrudnik.cpp
+  TaskManager.cpp
+C:\Users\User\Documents\TaskManager\TaskManager.cpp(26,23): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\User\Documents\TaskManager\TaskManager.cpp(107,50): warning C4244: аргумент: преобразование "_Ty" в "const unsigned int", возможна потеря данных
+          with
+          [
+              _Ty=double
+          ]
+C:\Users\User\Documents\TaskManager\TaskManager.cpp(108,58): warning C4244: аргумент: преобразование "_Ty" в "const int", возможна потеря данных
+          with
+          [
+              _Ty=double
+          ]
+  Создание кода...
+  TaskManager.vcxproj -> C:\Users\User\Documents\TaskManager\Debug\TaskManager.exe
